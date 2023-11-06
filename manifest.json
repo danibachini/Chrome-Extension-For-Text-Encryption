@@ -1,0 +1,9 @@
+{
+    "manifest_version": 3,
+    "name": "SecretGuardian",
+    "description": "Encrypt your texts using a personal key and keep your writings confidential",
+    "version": "1.0.1",
+    "action": {
+        "default_popup": "popup.html"
+    }
+}
