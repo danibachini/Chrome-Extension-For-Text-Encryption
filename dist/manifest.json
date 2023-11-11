@@ -4,6 +4,13 @@
     "description": "Encrypt your texts using a personal key and keep your writings confidential",
     "version": "1.0.1",
     "action": {
-        "default_popup": "js/index.html"
+        "default_popup": "js/index.html",
+        "default_icon": "js/static/icon16.png"
+    },
+    "icons": {
+        "16": "js/static/icon16.png",
+        "32": "js/static/icon32.png",
+        "48": "js/static/icon48.png",
+        "128": "js/static/icon128.png"
     }
 }

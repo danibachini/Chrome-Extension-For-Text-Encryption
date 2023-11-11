@@ -30,7 +30,10 @@ module.exports = {
                     "css-loader",
                     "postcss-loader"
                 ]
-
+            },
+            {
+                test: /\.webp$/,
+                type: 'asset/resource',
             },
         ],
     },
@@ -38,6 +41,7 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 { from: "manifest.json", to: "../manifest.json" },
+                { from: "src/static", to: "static" },
             ],
         }),
         ...getHtmlPlugins(["index"]),
