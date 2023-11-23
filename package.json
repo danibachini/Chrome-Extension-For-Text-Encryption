@@ -10,6 +10,7 @@
     "watch": "webpack -w --config webpack.config.js"
   },
   "dependencies": {
+    "express": "^4.18.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

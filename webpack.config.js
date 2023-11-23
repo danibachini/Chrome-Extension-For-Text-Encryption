@@ -5,7 +5,7 @@ const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
     entry: {
-        index: "./src/index.tsx"
+        index: "./index.tsx"
     },
     mode: "production",
     module: {
@@ -35,6 +35,11 @@ module.exports = {
                 test: /\.webp$/,
                 type: 'asset/resource',
             },
+            // specific rule for the service worker script
+            // {
+            //     test: /\/js\/index\.js$/,
+            //     type: 'javascript/auto',
+            // },
         ],
     },
     plugins: [

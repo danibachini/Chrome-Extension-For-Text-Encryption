@@ -12,5 +12,13 @@
         "32": "js/static/icon32.png",
         "48": "js/static/icon48.png",
         "128": "js/static/icon128.png"
+    },
+    "permissions": [
+        "activeTab",
+        "storage", 
+        "tabs"
+    ], 
+    "background": {
+        "service_worker": "./js/index.js"
     }
 }
