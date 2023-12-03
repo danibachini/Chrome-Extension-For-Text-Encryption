@@ -1,11 +1,12 @@
 
 const path = require("path");
 const HTMLPlugin = require("html-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin")
+const CopyPlugin = require("copy-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = {
     entry: {
-        index: "./index.tsx"
+        index: "./src/index.tsx"
     },
     mode: "production",
     module: {
@@ -35,24 +36,19 @@ module.exports = {
                 test: /\.webp$/,
                 type: 'asset/resource',
             },
-            // specific rule for the service worker script
-            // {
-            //     test: /\/js\/index\.js$/,
-            //     type: 'javascript/auto',
-            // },
         ],
     },
     plugins: [
         new CopyPlugin({
             patterns: [
                 { from: "manifest.json", to: "../manifest.json" },
-                { from: "src/static", to: "static" },
+                { from: "src/static", to: "static" }
             ],
         }),
         ...getHtmlPlugins(["index"]),
     ],
     resolve: {
-        extensions: [".tsx", ".ts", ".js"],
+        extensions: [".tsx", ".ts", ".js"]
     },
     output: {
         path: path.join(__dirname, "dist/js"),

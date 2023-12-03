@@ -3,26 +3,28 @@ import React from 'react';
 import logo from './static/secretguardian-logo.webp';
 import './static/input.css';
 import { useState } from 'react';
+import Encryption from './components/Encryption';
+
 
 export default function App() {
     const [input, setInput] = useState('');
-    const [password, setPassword] = useState('');
+    const [key, setkey] = useState('');
     const [visible, setVisible] = useState(false);
     const [encrypt, setEncrypt] = useState(true);
-
+    const [result, setResult] = useState('');
+    const [formSubmitted, setFormSubmitted] = useState(false);
 
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const data = { input, password, encrypt };
-
-        // Send a message to the background script (encryption.ts)
-        chrome.runtime.sendMessage({ action: 'submitForm', data });
         
+        setFormSubmitted(true);
+        console.log('This is the result: ', result);
     }
 
-
-
+    const handleResult = (encryptedResult: string) => {
+        setResult(encryptedResult);
+    };
 
     return (
         <>
@@ -65,9 +67,9 @@ export default function App() {
                             <div className='flex place-items-center'>
                                 <input 
                                 required 
-                                value={password}
+                                value={key}
                                 type={visible ? 'text' : 'password'}
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={(e) => setkey(e.target.value)}
                                 placeholder={encrypt ? 'Create your key' : 'Inform your key'}  
                                 className='input w-full max-w-xs border-b-slate-300 border-t-0 border-r-0 border-l-0 rounded-none focus:outline-none bg-transparent' 
                                 />
@@ -107,13 +109,25 @@ export default function App() {
 
                         <button 
                         type='submit'
-                        disabled={input.trim() === '' || password.trim() === ''}
+                        disabled={input.trim() === '' || key.trim() === ''}
                         className='btn w-40 justify-self-start col-start-4 bg-black text-slate-50 hover:bg-slate-500 ' 
                         >
                             {encrypt ? 'Encrypt Text' : 'Decrypt Text'}
                         </button>
                     </div>
                 </form>
+
+                {formSubmitted && (
+                    <div>
+                        <Encryption data={{ input, key, encrypt }} onResult={handleResult} />
+                        {result ?
+                            <p>{result}</p>
+                        :
+                            <p>loading</p>
+                        }
+                    </div>
+                )}
+
             </div>
         </>
     );

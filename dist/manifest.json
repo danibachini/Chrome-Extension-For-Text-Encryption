@@ -14,11 +14,9 @@
         "128": "js/static/icon128.png"
     },
     "permissions": [
+        "chrome-extension://chfaambclbcejfckdonjhnejhkccedhl/",
         "activeTab",
         "storage", 
         "tabs"
-    ], 
-    "background": {
-        "service_worker": "./js/index.js"
-    }
+    ]
 }
